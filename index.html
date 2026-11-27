@@ -77,66 +77,91 @@
       0% { background-position: -200% 0; }
       100% { background-position: 200% 0; }
     }
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 0 0 var(--accent); }
+      50% { box-shadow: 0 0 20px 4px color-mix(in srgb, var(--accent) 30%, transparent); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+    @keyframes rotate-in {
+      from { opacity: 0; transform: rotate(-6deg) scale(0.9); }
+      to { opacity: 1; transform: rotate(0) scale(1); }
+    }
+    @keyframes slide-in-right {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes badge-pop {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+    @keyframes counter-tick {
+      from { transform: translateY(-0.5em); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
 
     .card {
-      animation: fade-in-up 0.4s ease-out backwards;
+      animation: fade-in-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) backwards;
     }
     .card.exiting {
-      animation: fade-out 0.2s ease-in forwards;
+      animation: fade-out 0.25s cubic-bezier(0.4, 0, 1, 1) forwards;
       pointer-events: none;
     }
     .card-entering {
-      animation: scale-in 0.3s ease-out backwards;
+      animation: scale-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) backwards;
     }
 
     /* Stagger delays for initial load */
     .grid .card:nth-child(1) { animation-delay: 0ms; }
-    .grid .card:nth-child(2) { animation-delay: 40ms; }
-    .grid .card:nth-child(3) { animation-delay: 80ms; }
-    .grid .card:nth-child(4) { animation-delay: 120ms; }
-    .grid .card:nth-child(5) { animation-delay: 160ms; }
-    .grid .card:nth-child(6) { animation-delay: 200ms; }
-    .grid .card:nth-child(7) { animation-delay: 240ms; }
-    .grid .card:nth-child(8) { animation-delay: 280ms; }
-    .grid .card:nth-child(9) { animation-delay: 320ms; }
-    .grid .card:nth-child(10) { animation-delay: 360ms; }
-    .grid .card:nth-child(11) { animation-delay: 400ms; }
-    .grid .card:nth-child(12) { animation-delay: 440ms; }
-    .grid .card:nth-child(13) { animation-delay: 480ms; }
-    .grid .card:nth-child(14) { animation-delay: 520ms; }
-    .grid .card:nth-child(15) { animation-delay: 560ms; }
-    .grid .card:nth-child(16) { animation-delay: 600ms; }
-    .grid .card:nth-child(17) { animation-delay: 640ms; }
-    .grid .card:nth-child(18) { animation-delay: 680ms; }
-    .grid .card:nth-child(19) { animation-delay: 720ms; }
-    .grid .card:nth-child(20) { animation-delay: 760ms; }
-    .grid .card:nth-child(21) { animation-delay: 800ms; }
-    .grid .card:nth-child(22) { animation-delay: 840ms; }
-    .grid .card:nth-child(23) { animation-delay: 880ms; }
-    .grid .card:nth-child(24) { animation-delay: 920ms; }
-    .grid .card:nth-child(25) { animation-delay: 960ms; }
-    .grid .card:nth-child(26) { animation-delay: 1000ms; }
-    .grid .card:nth-child(27) { animation-delay: 1040ms; }
-    .grid .card:nth-child(28) { animation-delay: 1080ms; }
-    .grid .card:nth-child(29) { animation-delay: 1120ms; }
-    .grid .card:nth-child(30) { animation-delay: 1160ms; }
-    .grid .card:nth-child(31) { animation-delay: 1200ms; }
-    .grid .card:nth-child(32) { animation-delay: 1240ms; }
-    .grid .card:nth-child(33) { animation-delay: 1280ms; }
-    .grid .card:nth-child(34) { animation-delay: 1320ms; }
-    .grid .card:nth-child(35) { animation-delay: 1360ms; }
+    .grid .card:nth-child(2) { animation-delay: 50ms; }
+    .grid .card:nth-child(3) { animation-delay: 100ms; }
+    .grid .card:nth-child(4) { animation-delay: 150ms; }
+    .grid .card:nth-child(5) { animation-delay: 200ms; }
+    .grid .card:nth-child(6) { animation-delay: 250ms; }
+    .grid .card:nth-child(7) { animation-delay: 300ms; }
+    .grid .card:nth-child(8) { animation-delay: 350ms; }
+    .grid .card:nth-child(9) { animation-delay: 400ms; }
+    .grid .card:nth-child(10) { animation-delay: 450ms; }
+    .grid .card:nth-child(11) { animation-delay: 500ms; }
+    .grid .card:nth-child(12) { animation-delay: 550ms; }
+    .grid .card:nth-child(13) { animation-delay: 600ms; }
+    .grid .card:nth-child(14) { animation-delay: 650ms; }
+    .grid .card:nth-child(15) { animation-delay: 700ms; }
+    .grid .card:nth-child(16) { animation-delay: 750ms; }
+    .grid .card:nth-child(17) { animation-delay: 800ms; }
+    .grid .card:nth-child(18) { animation-delay: 850ms; }
+    .grid .card:nth-child(19) { animation-delay: 900ms; }
+    .grid .card:nth-child(20) { animation-delay: 950ms; }
+    .grid .card:nth-child(21) { animation-delay: 1000ms; }
+    .grid .card:nth-child(22) { animation-delay: 1050ms; }
+    .grid .card:nth-child(23) { animation-delay: 1100ms; }
+    .grid .card:nth-child(24) { animation-delay: 1150ms; }
+    .grid .card:nth-child(25) { animation-delay: 1200ms; }
+    .grid .card:nth-child(26) { animation-delay: 1250ms; }
+    .grid .card:nth-child(27) { animation-delay: 1300ms; }
+    .grid .card:nth-child(28) { animation-delay: 1350ms; }
+    .grid .card:nth-child(29) { animation-delay: 1400ms; }
+    .grid .card:nth-child(30) { animation-delay: 1450ms; }
+    .grid .card:nth-child(31) { animation-delay: 1500ms; }
+    .grid .card:nth-child(32) { animation-delay: 1550ms; }
+    .grid .card:nth-child(33) { animation-delay: 1600ms; }
+    .grid .card:nth-child(34) { animation-delay: 1650ms; }
+    .grid .card:nth-child(35) { animation-delay: 1700ms; }
 
     /* Hero entrance */
     .hero-inner > * {
-      animation: fade-in-up 0.6s ease-out backwards;
+      animation: fade-in-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) backwards;
     }
     .hero-inner > *:nth-child(1) { animation-delay: 0ms; }
-    .hero-inner > *:nth-child(2) { animation-delay: 100ms; }
-    .hero-inner > *:nth-child(3) { animation-delay: 200ms; }
+    .hero-inner > *:nth-child(2) { animation-delay: 120ms; }
+    .hero-inner > *:nth-child(3) { animation-delay: 240ms; }
 
     /* Filter bar entrance */
     .filter-bar {
-      animation: fade-in-up 0.5s ease-out 300ms backwards;
+      animation: slide-in-right 0.6s cubic-bezier(0.16, 1, 0.3, 1) 350ms backwards;
     }
 
     /* Image loading shimmer */
@@ -152,6 +177,66 @@
     /* Smooth filter transition for grid */
     .grid.filtering .card:not(.exiting) {
       transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+    }
+
+    /* === LIVELY INTERACTIONS === */
+    /* Card hover: smooth lift + subtle glow */
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--muted);
+    }
+    .card:hover .card-thumb img {
+      transform: scale(1.02);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Badge pop on hover */
+    .card:hover .platform-badge,
+    .card:hover .status-badge {
+      transform: scale(1.08);
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Filter pill press effect */
+    .filter-pill:active {
+      transform: scale(0.95);
+      transition: transform 0.05s;
+    }
+
+    /* Status select focus ring */
+    .filter-select:focus {
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+
+    /* Visible count tick animation */
+    #visible-count {
+      display: inline-block;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s;
+    }
+    #visible-count.tick {
+      animation: counter-tick 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Hero headline entrance */
+    .hero-headline {
+      animation: fade-in-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+    }
+
+    /* Scroll reveal for elements */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* CTA button magnetic feel */
+    .btn-primary:hover {
+      animation: pulse-glow 1.5s ease-in-out infinite;
     }
 
     /* ===== RESET & BASE ===== */
@@ -321,11 +406,29 @@
     /* ===== PROJECT GRID ===== */
     .projects { padding: calc(var(--gap) * 2) 0 calc(var(--gap) * 4); }
     .projects-header { margin-bottom: var(--gap); }
+    .projects-header-row {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: var(--gap-sm); flex-wrap: wrap;
+    }
     .projects-count { color: var(--muted); font-size: 0.875rem; }
+    .layout-toggle {
+      display: inline-flex; background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+    }
+    .layout-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px; color: var(--muted);
+      transition: color 0.15s, background 0.15s;
+    }
+    .layout-btn:hover { color: var(--ink); background: var(--border); }
+    .layout-btn.active { color: var(--accent); background: var(--accent-soft); }
+    .layout-btn:focus-visible { outline-offset: 2px; }
+
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: var(--gap);
+      transition: grid-template-columns 0.3s ease, gap 0.3s ease;
     }
     @media (min-width: 1280px) {
       .grid { grid-template-columns: repeat(4, 1fr); }
@@ -340,14 +443,77 @@
       .grid { grid-template-columns: 1fr; }
     }
 
+    /* List layout for grid */
+    .grid[data-layout="list"] {
+      grid-template-columns: 1fr !important;
+      gap: 12px;
+    }
+    .grid[data-layout="list"] .card {
+      flex-direction: row;
+      align-items: stretch;
+      transition: flex-direction 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                  border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .grid[data-layout="list"] .card-thumb {
+      aspect-ratio: auto;
+      width: 200px;
+      min-width: 200px;
+      border-radius: 0;
+      border-right: 1px solid var(--border);
+    }
+    .grid[data-layout="list"] .card-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: var(--gap-sm) var(--gap);
+    }
+    .grid[data-layout="list"] .card-meta {
+      margin-top: auto;
+    }
+    .grid[data-layout="list"] .card-footer {
+      padding: var(--gap-sm) var(--gap);
+      margin-top: 0;
+      border-left: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      min-width: 140px;
+      justify-content: center;
+    }
+
+    @media (max-width: 767px) {
+      .grid[data-layout="list"] .card {
+        flex-direction: column;
+      }
+      .grid[data-layout="list"] .card-thumb {
+        width: 100%;
+        min-width: 0;
+        aspect-ratio: 16 / 10;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+      .grid[data-layout="list"] .card-footer {
+        border-left: none;
+        border-top: 1px solid var(--border);
+        min-width: 0;
+        justify-content: flex-start;
+      }
+      .grid[data-layout="list"] .card-description {
+        display: block;
+      }
+    }
+
     /* ===== PROJECT CARD ===== */
     .card {
       background: var(--card-bg); border: 1px solid var(--border);
       border-radius: var(--radius); overflow: hidden;
-      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                  border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       display: flex; flex-direction: column;
     }
-    .card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); border-color: var(--muted); }
     .card:focus-within { outline: none; }
     .card-thumb {
       aspect-ratio: 16 / 10; background: var(--border); position: relative; overflow: hidden;
@@ -372,6 +538,14 @@
     .status-managing { background: var(--status-managing); }
     .status-manager { background: var(--status-manager); }
     .card-timeline { font-size: 0.8125rem; color: var(--muted); }
+    .card-description {
+      font-size: 0.875rem; line-height: 1.6; color: var(--muted);
+      display: none;
+    }
+    .grid[data-layout="list"] .card-description {
+      display: block;
+      margin: 4px 0 8px;
+    }
     .card-footer { padding: 0 var(--gap-sm) var(--gap-sm); margin-top: auto; }
     .card-link {
       display: inline-flex; align-items: center; gap: 6px;
@@ -491,9 +665,19 @@
     <!-- ===== PROJECT GRID ===== -->
     <section class="projects container" aria-labelledby="projects-heading">
       <div class="projects-header">
-        <p class="projects-count" id="projects-count">Showing <span id="visible-count">28</span> of 28 projects</p>
+        <div class="projects-header-row">
+          <p class="projects-count" id="projects-count">Showing <span id="visible-count">35</span> of <span id="total-count">35</span> projects</p>
+          <div class="layout-toggle" role="group" aria-label="Layout view">
+            <button type="button" class="layout-btn active" data-layout="grid" aria-label="Grid view" aria-pressed="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+            </button>
+            <button type="button" class="layout-btn" data-layout="list" aria-label="List view" aria-pressed="false">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+          </div>
+        </div>
       </div>
-      <div class="grid" id="grid" role="list">
+      <div class="grid" id="grid" role="list" data-layout="grid">
         <!-- Projects injected by JS -->
       </div>
       <div class="empty-state" id="empty-state" hidden>
@@ -532,41 +716,41 @@
   <script>
     // ===== PROJECT DATA =====
     const projects = [
-      { title: "Pablo & Truff", platform: "Shopify", status: "finished", timeline: "~1 month", url: "https://pabloandtruff.com", managing: true, image: "https://dwiky-kasih.pages.dev/image/pabloandtruff1.png" },
-      { title: "Grey Street Surgery", platform: "WordPress + Elementor", status: "finished", timeline: "~2 weeks", url: "https://greystreetsurgery.com.au", managing: true, image: "https://dwiky-kasih.pages.dev/image/greystreet.png" },
-      { title: "Hammond Park GP Clinic", platform: "WordPress + Elementor", status: "finished", timeline: "~1 week", url: "https://hammondparkgp.com.au", managing: true, image: "https://dwiky-kasih.pages.dev/image/hammondpark.png" },
-      { title: "EnviroBren", platform: "Elementor", status: "finished", timeline: "~2 weeks", url: "https://envirobren.com.au", managing: true, image: "https://dwiky-kasih.pages.dev/image/envirobren.png" },
-      { title: "Jupiter Health Beechboro", platform: "Elementor", status: "finished", timeline: "~1 week", url: "https://jupiterhealth.com.au/beechboro", managing: true, image: "https://dwiky-kasih.pages.dev/image/jupiter-beechboro.jpg" },
-      { title: "Jupiter Dental Clinic", platform: "Elementor", status: "finished", timeline: "~2 weeks", url: "https://jupiterdental.com.au", managing: true, image: "https://dwiky-kasih.pages.dev/image/jupiter-dental-clinic.jpg" },
-      { title: "Sukhothai Massage", platform: "Elementor", status: "finished", timeline: "~1 week", url: "https://sukhothaimassage.com.au", image: "https://dwiky-kasih.pages.dev/image/sukhothai.jpg" },
-      { title: "Custom Candle Co", platform: "Shopify", status: "done", timeline: "<1 hr/task", url: "https://customcandleco.com", image: "https://dwiky-kasih.pages.dev/image/customcandleco.png" },
-      { title: "Aplikasi Inovasi Bangsa", platform: "Oxygen", status: "done", timeline: "1 day", url: "https://inovasi-bangsa.id", image: "https://dwiky-kasih.pages.dev/image/aplikasiinovasbangsa.png" },
-      { title: "BPRKu.id", platform: "Oxygen", status: "done", timeline: "~3 days", url: "https://bprku.id", image: "https://dwiky-kasih.pages.dev/image/bprku.jpg" },
-      { title: "Brooke Lovelace", platform: "Premium Theme", status: "finished", timeline: "~2 weeks", url: "https://brookelovelace.com", image: "https://dwiky-kasih.pages.dev/image/brookelovelace.png" },
-      { title: "Ministry of HRCTD", platform: "Oxygen", status: "managing", timeline: "1-2 days/task", url: "https://hrctd.go.id", managing: true, image: "https://dwiky-kasih.pages.dev/image/ministry.png" },
-      { title: "Outsource Developers", platform: "Oxygen", status: "done", timeline: "TBA", url: "https://outsourcedevelopers.com", image: "https://dwiky-kasih.pages.dev/image/outsource.png" },
-      { title: "Salty Folk", platform: "Custom Design", status: "finished", timeline: "<1 week", url: "https://saltyfolk.com", image: "https://dwiky-kasih.pages.dev/image/saltyfolk.png" },
-      { title: "Belau National Museum", platform: "Oxygen", status: "done", timeline: "~1 week", url: "https://belaunationalmuseum.org", offline: true, image: "https://dwiky-kasih.pages.dev/image/belaunationalmuseum.png" },
-      { title: "Dedicated IT", platform: "Oxygen", status: "finished", timeline: "<1 week", url: "https://dedicatedit.com.au", image: "https://dwiky-kasih.pages.dev/image/dedicated-it.png" },
-      { title: "Palau Futures", platform: "Oxygen", status: "finished", timeline: "<1 week", url: "https://palaumfutures.org", image: "https://dwiky-kasih.pages.dev/image/palaufutures.png" },
-      { title: "Pristine Paradise Palau", platform: "Oxygen", status: "managing", timeline: "<1 day/task", url: "https://pristineparadisepalau.com", managing: true, image: "https://dwiky-kasih.pages.dev/image/pristine.png" },
-      { title: "Summerxsalt", platform: "WPBakery", status: "done", timeline: "<1 month", url: "https://summerxsalt.com", image: "https://dwiky-kasih.pages.dev/image/summerxsalt.png" },
-      { title: "Laser Skin Care", platform: "Custom", status: "finished", timeline: "<1 hr/task", url: "https://laserskincare.com.au", image: "https://dwiky-kasih.pages.dev/image/laserskincare.png" },
-      { title: "Ultimate Aesthetic", platform: "WPBakery", status: "finished", timeline: "<1 hr/task", url: "https://ultimateaesthetic.com.au", image: "https://dwiky-kasih.pages.dev/image/ultimateaesthetic.png" },
-      { title: "Mates That Matter", platform: "Custom", status: "done", timeline: "<2 weeks", url: "https://web.archive.org/web/2023*/matesthatmatter.com", image: "https://dwiky-kasih.pages.dev/image/matesthatmatter.png" },
-      { title: "DotX", platform: "Oxygen", status: "finished", timeline: "<2 hrs/task", url: "https://dotx.com.au", image: "https://dwiky-kasih.pages.dev/image/dotx.png" },
-      { title: "Kate Forsyth", platform: "Oxygen", status: "done", timeline: "<1 week", url: "https://kateforsyth.com.au", image: "https://dwiky-kasih.pages.dev/image/kateforsyth.png" },
-      { title: "KSP IKR", platform: "Oxygen", status: "done", timeline: "<1 hr/task", url: "https://kspikr.com", image: "https://dwiky-kasih.pages.dev/image/kspikr.png" },
-      { title: "Speedfest", platform: "Custom", status: "done", timeline: "<1 week", url: "https://speedfest.com.au", image: "https://dwiky-kasih.pages.dev/image/festivaloffest.png" },
-      { title: "Martin Box Marine", platform: "Custom", status: "done", timeline: "<1 week", url: "https://martinboxmarine.com.au", image: "https://dwiky-kasih.pages.dev/image/martinboxmarine.png" },
-      { title: "Midland Physio", platform: "Custom", status: "finished", timeline: "<1 month", url: "https://midlandphysio.com.au", image: "https://dwiky-kasih.pages.dev/image/midlandphysio.png" },
-      { title: "Mount Lawley Physio", platform: "Custom", status: "finished", timeline: "<2 weeks", url: "https://mtlawleyphysio.com.au", image: "https://dwiky-kasih.pages.dev/image/mountlawley.png" },
-      { title: "Mundaring Hills Physio", platform: "WPBakery", status: "finished", timeline: "<2 weeks", url: "https://mundaringhillsphysio.com.au", image: "https://dwiky-kasih.pages.dev/image/mundaringphysio.png" },
-      { title: "Munhing Restaurant", platform: "WPBakery", status: "done", timeline: "~2 weeks", url: "https://munhing.com", image: "https://dwiky-kasih.pages.dev/image/munhing.png" },
-      { title: "Ngazement", platform: "Custom", status: "done", timeline: "<1 month", url: "https://ngazement.com", image: "https://dwiky-kasih.pages.dev/image/ngazement.png" },
-      { title: "Paradises", platform: "Custom", status: "finished", timeline: "<1 month", url: "https://paradises.com", image: "https://dwiky-kasih.pages.dev/image/paradises.png" },
-      { title: "Rise Learning", platform: "WPBakery", status: "finished", timeline: "<3 days", url: "https://riselearning.com.au", image: "https://dwiky-kasih.pages.dev/image/riselearning.png" },
-      { title: "TCWA", platform: "Custom", status: "finished", timeline: "<1 week", url: "https://tcwa.org.au", image: "https://dwiky-kasih.pages.dev/image/tcwa.png" }
+      { title: "Pablo & Truff", platform: "Shopify", status: "finished", timeline: "~1 month", url: "https://pabloandtruff.com", managing: true, image: "https://dwiky-kasih.pages.dev/image/pabloandtruff1.png", description: "Premium pet food e-commerce store built on Shopify with custom theme, subscription management, and wholesale portal." },
+      { title: "Grey Street Surgery", platform: "WordPress + Elementor", status: "finished", timeline: "~2 weeks", url: "https://greystreetsurgery.com.au", managing: true, image: "https://dwiky-kasih.pages.dev/image/greystreet.png", description: "Medical practice website with online booking, patient portal integration, and GP team showcase. Ongoing management." },
+      { title: "Hammond Park GP Clinic", platform: "WordPress + Elementor", status: "finished", timeline: "~1 week", url: "https://hammondparkgp.com.au", managing: true, image: "https://dwiky-kasih.pages.dev/image/hammondpark.png", description: "Healthcare clinic site with appointment booking, doctor profiles, and patient resources. Active management." },
+      { title: "EnviroBren", platform: "Elementor", status: "finished", timeline: "~2 weeks", url: "https://envirobren.com.au", managing: true, image: "https://dwiky-kasih.pages.dev/image/envirobren.png", description: "Environmental consulting firm website with project portfolio, services breakdown, and contact forms." },
+      { title: "Jupiter Health Beechboro", platform: "Elementor", status: "finished", timeline: "~1 week", url: "https://jupiterhealth.com.au/beechboro", managing: true, image: "https://dwiky-kasih.pages.dev/image/jupiter-beechboro.jpg", description: "Multi-location healthcare network site with location-specific pages, services, and practitioner directories." },
+      { title: "Jupiter Dental Clinic", platform: "Elementor", status: "finished", timeline: "~2 weeks", url: "https://jupiterdental.com.au", managing: true, image: "https://dwiky-kasih.pages.dev/image/jupiter-dental-clinic.jpg", description: "Dental practice website with treatment pages, online booking, and patient education resources." },
+      { title: "Sukhothai Massage", platform: "Elementor", status: "finished", timeline: "~1 week", url: "https://sukhothaimassage.com.au", image: "https://dwiky-kasih.pages.dev/image/sukhothai.jpg", description: "Thai massage studio site with service menu, therapist profiles, and online booking integration." },
+      { title: "Custom Candle Co", platform: "Shopify", status: "done", timeline: "<1 hr/task", url: "https://customcandleco.com", image: "https://dwiky-kasih.pages.dev/image/customcandleco.png", description: "Custom candle e-commerce with product customization, gift sets, and subscription options." },
+      { title: "Aplikasi Inovasi Bangsa", platform: "Oxygen", status: "done", timeline: "1 day", url: "https://inovasi-bangsa.id", image: "https://dwiky-kasih.pages.dev/image/aplikasiinovasbangsa.png", description: "Indonesian innovation platform showcasing national projects with case studies and application portal." },
+      { title: "BPRKu.id", platform: "Oxygen", status: "done", timeline: "~3 days", url: "https://bprku.id", image: "https://dwiky-kasih.pages.dev/image/bprku.jpg", description: "Rural bank website with branch locator, financial products, and customer service portal." },
+      { title: "Brooke Lovelace", platform: "Premium Theme", status: "finished", timeline: "~2 weeks", url: "https://brookelovelace.com", image: "https://dwiky-kasih.pages.dev/image/brookelovelace.png", description: "Personal brand site for author/speaker with blog, speaking engagements, and newsletter signup." },
+      { title: "Ministry of HRCTD", platform: "Oxygen", status: "managing", timeline: "1-2 days/task", url: "https://hrctd.go.id", managing: true, image: "https://dwiky-kasih.pages.dev/image/ministry.png", description: "Government ministry website with policy documents, news, tenders, and public services directory." },
+      { title: "Outsource Developers", platform: "Oxygen", status: "done", timeline: "TBA", url: "https://outsourcedevelopers.com", image: "https://dwiky-kasih.pages.dev/image/outsource.png", description: "Developer marketplace connecting businesses with vetted freelance developers and agencies." },
+      { title: "Salty Folk", platform: "Custom Design", status: "finished", timeline: "<1 week", url: "https://saltyfolk.com", image: "https://dwiky-kasih.pages.dev/image/saltyfolk.png", description: "Coastal lifestyle brand with shop, journal, and community features. Custom headless build." },
+      { title: "Belau National Museum", platform: "Oxygen", status: "done", timeline: "~1 week", url: "https://belaunationalmuseum.org", offline: true, image: "https://dwiky-kasih.pages.dev/image/belaunationalmuseum.png", description: "National museum site with virtual tours, collections database, and educational resources. Currently offline." },
+      { title: "Dedicated IT", platform: "Oxygen", status: "finished", timeline: "<1 week", url: "https://dedicatedit.com.au", image: "https://dwiky-kasih.pages.dev/image/dedicated-it.png", description: "IT services company with managed services, cybersecurity, and cloud solutions pages." },
+      { title: "Palau Futures", platform: "Oxygen", status: "finished", timeline: "<1 week", url: "https://palaumfutures.org", image: "https://dwiky-kasih.pages.dev/image/palaufutures.png", description: "Economic development site for Palau with investment opportunities and sector guides." },
+      { title: "Pristine Paradise Palau", platform: "Oxygen", status: "managing", timeline: "<1 day/task", url: "https://pristineparadisepalau.com", managing: true, image: "https://dwiky-kasih.pages.dev/image/pristine.png", description: "Tourism marketing site with destination guides, operator listings, and booking integrations." },
+      { title: "Summerxsalt", platform: "WPBakery", status: "done", timeline: "<1 month", url: "https://summerxsalt.com", image: "https://dwiky-kasih.pages.dev/image/summerxsalt.png", description: "Swimwear brand e-commerce with lookbooks, size guides, and international shipping." },
+      { title: "Laser Skin Care", platform: "Custom", status: "finished", timeline: "<1 hr/task", url: "https://laserskincare.com.au", image: "https://dwiky-kasih.pages.dev/image/laserskincare.png", description: "Medical aesthetics clinic with treatment pages, before/after gallery, and consultation booking." },
+      { title: "Ultimate Aesthetic", platform: "WPBakery", status: "finished", timeline: "<1 hr/task", url: "https://ultimateaesthetic.com.au", image: "https://dwiky-kasih.pages.dev/image/ultimateaesthetic.png", description: "Cosmetic clinic website with procedure pages, practitioner profiles, and patient journey content." },
+      { title: "Mates That Matter", platform: "Custom", status: "done", timeline: "<2 weeks", url: "https://web.archive.org/web/2023*/matesthatmatter.com", image: "https://dwiky-kasih.pages.dev/image/matesthatmatter.png", description: "Mental health platform for men with peer support, resources, and crisis pathways. Archived." },
+      { title: "DotX", platform: "Oxygen", status: "finished", timeline: "<2 hrs/task", url: "https://dotx.com.au", image: "https://dwiky-kasih.pages.dev/image/dotx.png", description: "Digital agency portfolio with case studies, service offerings, and team showcase." },
+      { title: "Kate Forsyth", platform: "Oxygen", status: "done", timeline: "<1 week", url: "https://kateforsyth.com.au", image: "https://dwiky-kasih.pages.dev/image/kateforsyth.png", description: "Author website with bibliography, events calendar, newsletter, and media kit." },
+      { title: "KSP IKR", platform: "Oxygen", status: "done", timeline: "<1 hr/task", url: "https://kspikr.com", image: "https://dwiky-kasih.pages.dev/image/kspikr.png", description: "Cooperative savings and loan website with member portal and financial calculators." },
+      { title: "Speedfest", platform: "Custom", status: "done", timeline: "<1 week", url: "https://speedfest.com.au", image: "https://dwiky-kasih.pages.dev/image/festivaloffest.png", description: "Motorsport event site with schedule, ticketing, live timing, and sponsor showcase." },
+      { title: "Martin Box Marine", platform: "Custom", status: "done", timeline: "<1 week", url: "https://martinboxmarine.com.au", image: "https://dwiky-kasih.pages.dev/image/martinboxmarine.png", description: "Marine equipment supplier with product catalog, technical specs, and dealer locator." },
+      { title: "Midland Physio", platform: "Custom", status: "finished", timeline: "<1 month", url: "https://midlandphysio.com.au", image: "https://dwiky-kasih.pages.dev/image/midlandphysio.png", description: "Physiotherapy clinic network with online booking, treatment pages, and team bios." },
+      { title: "Mount Lawley Physio", platform: "Custom", status: "finished", timeline: "<2 weeks", url: "https://mtlawleyphysio.com.au", image: "https://dwiky-kasih.pages.dev/image/mountlawley.png", description: "Sports physiotherapy practice with injury guides, rehab programs, and athlete testimonials." },
+      { title: "Mundaring Hills Physio", platform: "WPBakery", status: "finished", timeline: "<2 weeks", url: "https://mundaringhillsphysio.com.au", image: "https://dwiky-kasih.pages.dev/image/mundaringphysio.png", description: "Rural physiotherapy clinic with home visits, NDIS services, and community programs." },
+      { title: "Munhing Restaurant", platform: "WPBakery", status: "done", timeline: "~2 weeks", url: "https://munhing.com", image: "https://dwiky-kasih.pages.dev/image/munhing.png", description: "Asian fusion restaurant with menu, online ordering, reservation system, and gallery." },
+      { title: "Ngazement", platform: "Custom", status: "done", timeline: "<1 month", url: "https://ngazement.com", image: "https://dwiky-kasih.pages.dev/image/ngazement.png", description: "Creative agency portfolio with interactive case studies and motion design showcase." },
+      { title: "Paradises", platform: "Custom", status: "finished", timeline: "<1 month", url: "https://paradises.com", image: "https://dwiky-kasih.pages.dev/image/paradises.png", description: "Travel platform for Pacific destinations with itineraries, booking, and local guides." },
+      { title: "Rise Learning", platform: "WPBakery", status: "finished", timeline: "<3 days", url: "https://riselearning.com.au", image: "https://dwiky-kasih.pages.dev/image/riselearning.png", description: "Education platform with course catalog, LMS integration, and student dashboard." },
+      { title: "TCWA", platform: "Custom", status: "finished", timeline: "<1 week", url: "https://tcwa.org.au", image: "https://dwiky-kasih.pages.dev/image/tcwa.png", description: "Water industry association with member resources, events, standards, and advocacy." }
     ];
 
     // ===== PLATFORM NORMALIZATION =====
@@ -633,14 +817,19 @@
     const grid = document.getElementById("grid");
     const emptyState = document.getElementById("empty-state");
     const visibleCount = document.getElementById("visible-count");
+    const totalCount = document.getElementById("total-count");
     const platformPills = document.querySelectorAll(".filter-pill[data-filter='platform']");
     const statusSelect = document.querySelector(".filter-select[data-filter='status']");
     const searchInput = document.querySelector(".filter-search[data-filter='search']");
+    const layoutBtns = document.querySelectorAll(".layout-btn");
 
     // ===== STATE =====
     let currentPlatform = "all";
     let currentStatus = "all";
     let currentSearch = "";
+
+    // Initialize total count
+    totalCount.textContent = projects.length;
 
     // ===== RENDER =====
     function renderProjects() {
@@ -653,7 +842,12 @@
         return platformMatch && statusMatch && searchMatch;
       });
 
-      visibleCount.textContent = filtered.length;
+      // Animate counter
+      visibleCount.classList.remove("tick");
+      requestAnimationFrame(() => {
+        visibleCount.textContent = filtered.length;
+        visibleCount.classList.add("tick");
+      });
       emptyState.hidden = filtered.length > 0;
 
       // Add filtering class for smooth transitions
@@ -668,9 +862,10 @@
         const statusClass = `status-${p.status}`;
         // Use real image if available, fallback to placeholder
         const imageSrc = p.image || generatePlaceholder(platformKey, p.title);
+        const description = p.description ? `<p class="card-description">${p.description}</p>` : '';
 
         return `
-          <article class="card" role="listitem" style="--platform-color: ${platformColor}; --card-index: ${index};" data-index="${index}">
+          <article class="card reveal-on-scroll" role="listitem" style="--platform-color: ${platformColor}; --card-index: ${index};" data-index="${index}">
             <div class="card-thumb">
               <img
                 src="${imageSrc}"
@@ -684,6 +879,7 @@
             </div>
             <div class="card-body">
               <h3 class="card-title">${p.title}</h3>
+              ${description}
               <div class="card-meta">
                 <span class="platform-badge" style="background: ${platformColor}1A; color: ${platformColor};">${displayPlatform}</span>
                 <span class="status-badge ${statusClass}">${statusLabel}</span>
@@ -701,6 +897,9 @@
       }).join("");
 
       grid.innerHTML = cardsHTML;
+
+      // Trigger scroll reveal for new cards
+      observeRevealElements();
     }
 
     // ===== FILTER HANDLERS =====
@@ -746,6 +945,18 @@
 
     searchInput.addEventListener("input", (e) => setSearchFilter(e.target.value));
 
+    // Layout toggle
+    layoutBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const layout = btn.dataset.layout;
+        layoutBtns.forEach(b => {
+          b.classList.toggle("active", b.dataset.layout === layout);
+          b.setAttribute("aria-pressed", b.dataset.layout === layout);
+        });
+        grid.dataset.layout = layout;
+      });
+    });
+
     // Keyboard support for filter pills
     platformPills.forEach(pill => {
       pill.addEventListener("keydown", (e) => {
@@ -763,8 +974,25 @@
       searchInput.focus();
     });
 
+    // ===== SCROLL REVEAL OBSERVER =====
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+    function observeRevealElements() {
+      document.querySelectorAll(".reveal-on-scroll:not(.visible)").forEach(el => {
+        revealObserver.observe(el);
+      });
+    }
+
     // ===== INIT =====
     renderProjects();
+    observeRevealElements();
   </script>
 </body>
 </html>
