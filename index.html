@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Muhammad Dwiky Fajar Kasih — WordPress & Front-End Developer. 28+ projects across healthcare, e-commerce, non-profits, and government.">
+  <title>MDFK — WordPress & Front-End Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== DESIGN TOKENS ===== */
+    :root {
+      --ink: #0F0F0F;
+      --paper: #FAFAF9;
+      --muted: #71717A;
+      --accent: #E85D04;
+      --accent-soft: #FFF4ED;
+      --card-bg: #FFFFFF;
+      --border: #E4E4E7;
+      --status-finished: #059669;
+      --status-done: #6B7280;
+      --status-managing: #2563EB;
+      --status-manager: #7C3AED;
+      --focus-ring: 3px solid var(--accent);
+      --radius: 4px;
+      --shadow: 0 4px 12px rgba(15, 15, 15, 0.08);
+      --shadow-hover: 0 8px 24px rgba(15, 15, 15, 0.12);
+      --header-h: 72px;
+      --filter-h: 56px;
+      --max-w: 1200px;
+      --gap: 24px;
+      --gap-sm: 16px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ink: #F4F4F5;
+        --paper: #0F0F0F;
+        --muted: #A1A1AA;
+        --accent: #FB923C;
+        --accent-soft: #3D2610;
+        --card-bg: #18181B;
+        --border: #27272A;
+        --status-finished: #34D399;
+        --status-done: #9CA3AF;
+        --status-managing: #60A5FA;
+        --status-manager: #A78BFA;
+        --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.5);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fade-in-up {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fade-out {
+      from { opacity: 1; transform: translateY(0); }
+      to { opacity: 0; transform: translateY(-8px); }
+    }
+    @keyframes scale-in {
+      from { opacity: 0; transform: scale(0.96); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    .card {
+      animation: fade-in-up 0.4s ease-out backwards;
+    }
+    .card.exiting {
+      animation: fade-out 0.2s ease-in forwards;
+      pointer-events: none;
+    }
+    .card-entering {
+      animation: scale-in 0.3s ease-out backwards;
+    }
+
+    /* Stagger delays for initial load */
+    .grid .card:nth-child(1) { animation-delay: 0ms; }
+    .grid .card:nth-child(2) { animation-delay: 40ms; }
+    .grid .card:nth-child(3) { animation-delay: 80ms; }
+    .grid .card:nth-child(4) { animation-delay: 120ms; }
+    .grid .card:nth-child(5) { animation-delay: 160ms; }
+    .grid .card:nth-child(6) { animation-delay: 200ms; }
+    .grid .card:nth-child(7) { animation-delay: 240ms; }
+    .grid .card:nth-child(8) { animation-delay: 280ms; }
+    .grid .card:nth-child(9) { animation-delay: 320ms; }
+    .grid .card:nth-child(10) { animation-delay: 360ms; }
+    .grid .card:nth-child(11) { animation-delay: 400ms; }
+    .grid .card:nth-child(12) { animation-delay: 440ms; }
+    .grid .card:nth-child(13) { animation-delay: 480ms; }
+    .grid .card:nth-child(14) { animation-delay: 520ms; }
+    .grid .card:nth-child(15) { animation-delay: 560ms; }
+    .grid .card:nth-child(16) { animation-delay: 600ms; }
+    .grid .card:nth-child(17) { animation-delay: 640ms; }
+    .grid .card:nth-child(18) { animation-delay: 680ms; }
+    .grid .card:nth-child(19) { animation-delay: 720ms; }
+    .grid .card:nth-child(20) { animation-delay: 760ms; }
+    .grid .card:nth-child(21) { animation-delay: 800ms; }
+    .grid .card:nth-child(22) { animation-delay: 840ms; }
+    .grid .card:nth-child(23) { animation-delay: 880ms; }
+    .grid .card:nth-child(24) { animation-delay: 920ms; }
+    .grid .card:nth-child(25) { animation-delay: 960ms; }
+    .grid .card:nth-child(26) { animation-delay: 1000ms; }
+    .grid .card:nth-child(27) { animation-delay: 1040ms; }
+    .grid .card:nth-child(28) { animation-delay: 1080ms; }
+    .grid .card:nth-child(29) { animation-delay: 1120ms; }
+    .grid .card:nth-child(30) { animation-delay: 1160ms; }
+    .grid .card:nth-child(31) { animation-delay: 1200ms; }
+    .grid .card:nth-child(32) { animation-delay: 1240ms; }
+    .grid .card:nth-child(33) { animation-delay: 1280ms; }
+    .grid .card:nth-child(34) { animation-delay: 1320ms; }
+    .grid .card:nth-child(35) { animation-delay: 1360ms; }
+
+    /* Hero entrance */
+    .hero-inner > * {
+      animation: fade-in-up 0.6s ease-out backwards;
+    }
+    .hero-inner > *:nth-child(1) { animation-delay: 0ms; }
+    .hero-inner > *:nth-child(2) { animation-delay: 100ms; }
+    .hero-inner > *:nth-child(3) { animation-delay: 200ms; }
+
+    /* Filter bar entrance */
+    .filter-bar {
+      animation: fade-in-up 0.5s ease-out 300ms backwards;
+    }
+
+    /* Image loading shimmer */
+    .card-thumb img.loading {
+      background: linear-gradient(90deg, var(--border) 25%, var(--accent-soft) 50%, var(--border) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+    }
+    .card-thumb img.loaded {
+      animation: none;
+    }
+
+    /* Smooth filter transition for grid */
+    .grid.filtering .card:not(.exiting) {
+      transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+    }
+
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; }
+    * { margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--ink);
+      background: var(--paper);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; background: none; border: none; cursor: pointer; }
+    ul { list-style: none; }
+    :focus-visible { outline: var(--focus-ring); outline-offset: 2px; border-radius: 2px; }
+
+    /* ===== TYPOGRAPHY ===== */
+    .display {
+      font-size: clamp(2.5rem, 5vw + 1rem, 4rem);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    .h1 { font-size: clamp(1.75rem, 3vw + 1rem, 2.5rem); font-weight: 600; line-height: 1.2; }
+    .h2 { font-size: clamp(1.35rem, 2vw + 0.75rem, 1.75rem); font-weight: 500; line-height: 1.3; }
+    .body { font-size: 1rem; font-weight: 400; line-height: 1.65; max-width: 65ch; }
+    .small { font-size: 0.875rem; font-weight: 400; line-height: 1.5; }
+    .micro {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+    }
+
+    /* ===== LAYOUT ===== */
+    .page { min-height: 100vh; display: grid; grid-template-rows: auto 1fr auto; }
+    .container { width: 100%; max-width: var(--max-w); margin: 0 auto; padding: 0 var(--gap); }
+    .container-sm { max-width: 800px; }
+
+    /* ===== HEADER ===== */
+    .header {
+      position: sticky; top: 0; z-index: 100;
+      height: var(--header-h);
+      background: color-mix(in srgb, var(--paper) 92%, transparent);
+      backdrop-filter: saturate(180%) blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 100%; gap: var(--gap-sm);
+      flex-wrap: wrap;
+    }
+    .brand { display: flex; flex-direction: column; gap: 2px; }
+    .brand-mark { font-weight: 700; font-size: 1.25rem; letter-spacing: -0.01em; }
+    .brand-name { font-size: 0.875rem; font-weight: 500; color: var(--muted); }
+    .header-actions { display: flex; align-items: center; gap: 12px; }
+    .contact-link {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px; border-radius: var(--radius);
+      color: var(--muted); transition: color 0.15s, background 0.15s;
+    }
+    .contact-link:hover { color: var(--ink); background: var(--border); }
+    .contact-link:focus-visible { outline-offset: 2px; }
+    .contact-link svg { width: 18px; height: 18px; }
+
+    /* ===== HERO ===== */
+    .hero { padding: calc(var(--gap) * 3) 0; }
+    .hero-inner { text-align: center; }
+    .hero-headline { margin-bottom: var(--gap-sm); }
+    .hero-sub { color: var(--muted); margin-bottom: calc(var(--gap) * 2); max-width: 600px; margin-left: auto; margin-right: auto; }
+    .hero-cta { display: flex; gap: var(--gap-sm); justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 12px 24px; font-weight: 500; border-radius: var(--radius);
+      transition: transform 0.1s, box-shadow 0.15s, background 0.15s;
+    }
+    .btn:active { transform: scale(0.98); }
+    .btn-primary { background: var(--ink); color: var(--paper); }
+    .btn-primary:hover { background: var(--muted); }
+    .btn-secondary { background: var(--card-bg); color: var(--ink); border: 1px solid var(--border); }
+    .btn-secondary:hover { background: var(--border); }
+
+    /* ===== FILTER BAR ===== */
+    .filter-bar {
+      position: sticky; top: var(--header-h); z-index: 50;
+      height: var(--filter-h);
+      background: color-mix(in srgb, var(--paper) 95%, transparent);
+      backdrop-filter: saturate(180%) blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: var(--gap-sm);
+      flex-wrap: wrap; padding: 0 var(--gap);
+      overflow-x: auto; scrollbar-width: thin;
+    }
+    .filter-group { display: flex; align-items: center; gap: 8px; }
+    .filter-pills { display: flex; gap: 8px; flex-wrap: nowrap; }
+    .filter-pill {
+      padding: 6px 14px; font-size: 0.8125rem; font-weight: 500;
+      border-radius: 999px; background: var(--card-bg); border: 1px solid var(--border);
+      color: var(--ink); cursor: pointer; white-space: nowrap;
+      transition: border-color 0.15s, background 0.15s, color 0.15s;
+    }
+    .filter-pill:hover { border-color: var(--muted); }
+    .filter-pill.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .filter-pill:focus-visible { outline-offset: 2px; }
+    .filter-divider { width: 1px; height: 24px; background: var(--border); margin: 0 4px; }
+    .filter-select {
+      appearance: none; padding: 6px 32px 6px 12px; font-size: 0.8125rem; font-weight: 500;
+      border-radius: var(--radius); background: var(--card-bg); border: 1px solid var(--border);
+      color: var(--ink); cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2371717A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 10px center;
+    }
+    .filter-search {
+      flex: 1; min-width: 200px; max-width: 320px;
+      padding: 8px 12px; font-size: 0.875rem;
+      border-radius: var(--radius); background: var(--card-bg); border: 1px solid var(--border);
+      color: var(--ink); transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .filter-search:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+    .filter-search::placeholder { color: var(--muted); }
+
+    /* ===== PROJECT GRID ===== */
+    .projects { padding: calc(var(--gap) * 2) 0 calc(var(--gap) * 4); }
+    .projects-header { margin-bottom: var(--gap); }
+    .projects-count { color: var(--muted); font-size: 0.875rem; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: var(--gap);
+    }
+    @media (min-width: 1024px) {
+      .grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    /* ===== PROJECT CARD ===== */
+    .card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+      display: flex; flex-direction: column;
+    }
+    .card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); border-color: var(--muted); }
+    .card:focus-within { outline: none; }
+    .card-thumb {
+      aspect-ratio: 16 / 10; background: var(--border); position: relative; overflow: hidden;
+    }
+    .card-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+    .card:hover .card-thumb img { transform: scale(1.03); }
+    .card-thumb-placeholder {
+      display: flex; align-items: center; justify-content: center;
+      width: 100%; height: 100%; font-size: 1.5rem; font-weight: 600; color: var(--muted);
+      background: linear-gradient(135deg, var(--border) 0%, var(--card-bg) 100%);
+    }
+    .card-body { padding: var(--gap-sm); display: flex; flex-direction: column; flex: 1; gap: 8px; }
+    .card-title { font-size: 1rem; font-weight: 600; line-height: 1.3; }
+    .card-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .platform-badge {
+      padding: 2px 8px; font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.02em;
+      border-radius: 3px; background: var(--accent-soft); color: var(--accent);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+    }
+    .status-badge {
+      padding: 2px 8px; font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.02em;
+      border-radius: 3px; color: white;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+    }
+    .status-finished { background: var(--status-finished); }
+    .status-done { background: var(--status-done); }
+    .status-managing { background: var(--status-managing); }
+    .status-manager { background: var(--status-manager); }
+    .card-timeline { font-size: 0.8125rem; color: var(--muted); }
+    .card-footer { padding: 0 var(--gap-sm) var(--gap-sm); margin-top: auto; }
+    .card-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.875rem; font-weight: 500; color: var(--accent);
+      padding: 8px 0; border-bottom: 1px solid transparent;
+      transition: border-color 0.15s;
+    }
+    .card-link:hover { border-color: var(--accent); }
+    .card-link svg { width: 16px; height: 16px; transition: transform 0.15s; }
+    .card-link:hover svg { transform: translateX(3px); }
+
+    /* ===== EMPTY STATE ===== */
+    .empty-state { grid-column: 1 / -1; text-align: center; padding: calc(var(--gap) * 4); color: var(--muted); }
+    .empty-state svg { width: 64px; height: 64px; margin-bottom: var(--gap-sm); opacity: 0.5; }
+
+    /* ===== FOOTER CTA ===== */
+    .footer-cta {
+      background: var(--ink); color: var(--paper);
+      padding: calc(var(--gap) * 3) 0; margin-top: auto;
+    }
+    .footer-cta-inner { text-align: center; max-width: 600px; margin: 0 auto; }
+    .footer-cta h2 { margin-bottom: var(--gap-sm); }
+    .footer-cta p { color: var(--muted); margin-bottom: calc(var(--gap) * 1.5); }
+    .footer-links { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .footer-link {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 44px; height: 44px; border-radius: var(--radius);
+      background: var(--card-bg); color: var(--ink);
+      transition: background 0.15s, color 0.15s, transform 0.1s;
+    }
+    .footer-link:hover { background: var(--accent); color: var(--paper); transform: translateY(-2px); }
+    .footer-link svg { width: 20px; height: 20px; }
+
+    /* ===== FOOTER ===== */
+    .footer { padding: var(--gap) 0; border-top: 1px solid var(--border); text-align: center; }
+    .footer p { font-size: 0.8125rem; color: var(--muted); }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- ===== HEADER ===== -->
+    <header class="header" role="banner">
+      <div class="container header-inner">
+        <div class="brand">
+          <span class="brand-mark">MDFK</span>
+          <span class="brand-name">Muhammad Dwiky Fajar Kasih</span>
+        </div>
+        <nav class="header-actions" aria-label="Contact links">
+          <a href="mailto:dwiky.kasih@gmail.com" class="contact-link" aria-label="Email" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </a>
+          <a href="https://wa.me/6281234567890" class="contact-link" aria-label="WhatsApp" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </a>
+          <a href="https://upwork.com/freelancers/~0123456789" class="contact-link" aria-label="Upwork" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </a>
+          <a href="https://linkedin.com/in/dwikykasih" class="contact-link" aria-label="LinkedIn" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <main class="hero" id="projects">
+      <div class="container container-sm hero-inner">
+        <h1 class="display hero-headline">I build maintainable WordPress sites and clean front-end interfaces.</h1>
+        <p class="body hero-sub">WordPress & Front-End Developer · 4+ years · 28 projects delivered across healthcare, e-commerce, non-profits, and government.</p>
+        <div class="hero-cta">
+          <a href="#grid" class="btn btn-primary">View Projects</a>
+          <a href="mailto:dwiky.kasih@gmail.com" class="btn btn-secondary">Get in Touch</a>
+        </div>
+      </div>
+    </main>
+
+    <!-- ===== FILTER BAR ===== -->
+    <div class="filter-bar container" role="search" aria-label="Filter projects">
+      <div class="filter-group filter-pills" role="tablist" aria-label="Platform filter">
+        <button class="filter-pill active" role="tab" aria-selected="true" data-filter="platform" data-value="all">All</button>
+        <button class="filter-pill" role="tab" aria-selected="false" data-filter="platform" data-value="wordpress">WordPress</button>
+        <button class="filter-pill" role="tab" aria-selected="false" data-filter="platform" data-value="shopify">Shopify</button>
+        <button class="filter-pill" role="tab" aria-selected="false" data-filter="platform" data-value="custom">Custom</button>
+        <button class="filter-pill" role="tab" aria-selected="false" data-filter="platform" data-value="managing">Managing</button>
+      </div>
+      <div class="filter-divider" aria-hidden="true"></div>
+      <div class="filter-group">
+        <select class="filter-select" aria-label="Filter by status" data-filter="status">
+          <option value="all">All Statuses</option>
+          <option value="finished">Finished</option>
+          <option value="managing">Still Managing</option>
+          <option value="manager">Website Manager</option>
+          <option value="done">Done</option>
+        </select>
+      </div>
+      <div class="filter-divider" aria-hidden="true"></div>
+      <div class="filter-group" style="flex: 1; min-width: 200px; max-width: 320px;">
+        <input type="search" class="filter-search" placeholder="Search projects..." aria-label="Search projects" data-filter="search">
+      </div>
+    </div>
+
+    <!-- ===== PROJECT GRID ===== -->
+    <section class="projects container" aria-labelledby="projects-heading">
+      <div class="projects-header">
+        <p class="projects-count" id="projects-count">Showing <span id="visible-count">28</span> of 28 projects</p>
+      </div>
+      <div class="grid" id="grid" role="list">
+        <!-- Projects injected by JS -->
+      </div>
+      <div class="empty-state" id="empty-state" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin: 0 auto var(--gap-sm);"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <p>No projects match your filters.</p>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER CTA ===== -->
+    <footer class="footer-cta" role="contentinfo">
+      <div class="container footer-cta-inner">
+        <h2 class="h2">Ready to start a project?</h2>
+        <p>I'm available for freelance, contract, and ongoing website management work.</p>
+        <div class="footer-links">
+          <a href="mailto:dwiky.kasih@gmail.com" class="footer-link" aria-label="Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </a>
+          <a href="https://wa.me/6281234567890" class="footer-link" aria-label="WhatsApp" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </a>
+          <a href="https://upwork.com/freelancers/~0123456789" class="footer-link" aria-label="Upwork" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </a>
+          <a href="https://linkedin.com/in/dwikykasih" class="footer-link" aria-label="LinkedIn" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <footer class="footer container">
+      <p>&copy; 2026 Muhammad Dwiky Fajar Kasih. Built with IBM Plex Sans.</p>
+    </footer>
+  </div>
+
+  <script>
+    // ===== PROJECT DATA =====
+    const projects = [
+      { title: "Pablo & Truff", platform: "Shopify", status: "finished", timeline: "~1 month", url: "https://pabloandtruff.com", managing: true, image: "https://dwiky-kasih.pages.dev/image/pabloandtruff1.png" },
+      { title: "Grey Street Surgery", platform: "WordPress + Elementor", status: "finished", timeline: "~2 weeks", url: "https://greystreetsurgery.com.au", managing: true, image: "https://dwiky-kasih.pages.dev/image/greystreet.png" },
+      { title: "Hammond Park GP Clinic", platform: "WordPress + Elementor", status: "finished", timeline: "~1 week", url: "https://hammondparkgp.com.au", managing: true, image: "https://dwiky-kasih.pages.dev/image/hammondpark.png" },
+      { title: "EnviroBren", platform: "Elementor", status: "finished", timeline: "~2 weeks", url: "https://envirobren.com.au", managing: true, image: "https://dwiky-kasih.pages.dev/image/envirobren.png" },
+      { title: "Jupiter Health Beechboro", platform: "Elementor", status: "finished", timeline: "~1 week", url: "https://jupiterhealth.com.au/beechboro", managing: true, image: "https://dwiky-kasih.pages.dev/image/jupiter-beechboro.jpg" },
+      { title: "Jupiter Dental Clinic", platform: "Elementor", status: "finished", timeline: "~2 weeks", url: "https://jupiterdental.com.au", managing: true, image: "https://dwiky-kasih.pages.dev/image/jupiter-dental-clinic.jpg" },
+      { title: "Sukhothai Massage", platform: "Elementor", status: "finished", timeline: "~1 week", url: "https://sukhothaimassage.com.au", image: "https://dwiky-kasih.pages.dev/image/sukhothai.jpg" },
+      { title: "Custom Candle Co", platform: "Shopify", status: "done", timeline: "<1 hr/task", url: "https://customcandleco.com", image: "https://dwiky-kasih.pages.dev/image/customcandleco.png" },
+      { title: "Aplikasi Inovasi Bangsa", platform: "Oxygen", status: "done", timeline: "1 day", url: "https://inovasi-bangsa.id", image: "https://dwiky-kasih.pages.dev/image/aplikasiinovasbangsa.png" },
+      { title: "BPRKu.id", platform: "Oxygen", status: "done", timeline: "~3 days", url: "https://bprku.id", image: "https://dwiky-kasih.pages.dev/image/bprku.jpg" },
+      { title: "Brooke Lovelace", platform: "Premium Theme", status: "finished", timeline: "~2 weeks", url: "https://brookelovelace.com", image: "https://dwiky-kasih.pages.dev/image/brookelovelace.png" },
+      { title: "Ministry of HRCTD", platform: "Oxygen", status: "managing", timeline: "1-2 days/task", url: "https://hrctd.go.id", managing: true, image: "https://dwiky-kasih.pages.dev/image/ministry.png" },
+      { title: "Outsource Developers", platform: "Oxygen", status: "done", timeline: "TBA", url: "https://outsourcedevelopers.com", image: "https://dwiky-kasih.pages.dev/image/outsource.png" },
+      { title: "Salty Folk", platform: "Custom Design", status: "finished", timeline: "<1 week", url: "https://saltyfolk.com", image: "https://dwiky-kasih.pages.dev/image/saltyfolk.png" },
+      { title: "Belau National Museum", platform: "Oxygen", status: "done", timeline: "~1 week", url: "https://belaunationalmuseum.org", offline: true, image: "https://dwiky-kasih.pages.dev/image/belaunationalmuseum.png" },
+      { title: "Dedicated IT", platform: "Oxygen", status: "finished", timeline: "<1 week", url: "https://dedicatedit.com.au", image: "https://dwiky-kasih.pages.dev/image/dedicated-it.png" },
+      { title: "Palau Futures", platform: "Oxygen", status: "finished", timeline: "<1 week", url: "https://palaumfutures.org", image: "https://dwiky-kasih.pages.dev/image/palaufutures.png" },
+      { title: "Pristine Paradise Palau", platform: "Oxygen", status: "managing", timeline: "<1 day/task", url: "https://pristineparadisepalau.com", managing: true, image: "https://dwiky-kasih.pages.dev/image/pristine.png" },
+      { title: "Summerxsalt", platform: "WPBakery", status: "done", timeline: "<1 month", url: "https://summerxsalt.com", image: "https://dwiky-kasih.pages.dev/image/summerxsalt.png" },
+      { title: "Laser Skin Care", platform: "Custom", status: "finished", timeline: "<1 hr/task", url: "https://laserskincare.com.au", image: "https://dwiky-kasih.pages.dev/image/laserskincare.png" },
+      { title: "Ultimate Aesthetic", platform: "WPBakery", status: "finished", timeline: "<1 hr/task", url: "https://ultimateaesthetic.com.au", image: "https://dwiky-kasih.pages.dev/image/ultimateaesthetic.png" },
+      { title: "Mates That Matter", platform: "Custom", status: "done", timeline: "<2 weeks", url: "https://web.archive.org/web/2023*/matesthatmatter.com", image: "https://dwiky-kasih.pages.dev/image/matesthatmatter.png" },
+      { title: "DotX", platform: "Oxygen", status: "finished", timeline: "<2 hrs/task", url: "https://dotx.com.au", image: "https://dwiky-kasih.pages.dev/image/dotx.png" },
+      { title: "Kate Forsyth", platform: "Oxygen", status: "done", timeline: "<1 week", url: "https://kateforsyth.com.au", image: "https://dwiky-kasih.pages.dev/image/kateforsyth.png" },
+      { title: "KSP IKR", platform: "Oxygen", status: "done", timeline: "<1 hr/task", url: "https://kspikr.com", image: "https://dwiky-kasih.pages.dev/image/kspikr.png" },
+      { title: "Speedfest", platform: "Custom", status: "done", timeline: "<1 week", url: "https://speedfest.com.au", image: "https://dwiky-kasih.pages.dev/image/festivaloffest.png" },
+      { title: "Martin Box Marine", platform: "Custom", status: "done", timeline: "<1 week", url: "https://martinboxmarine.com.au", image: "https://dwiky-kasih.pages.dev/image/martinboxmarine.png" },
+      { title: "Midland Physio", platform: "Custom", status: "finished", timeline: "<1 month", url: "https://midlandphysio.com.au", image: "https://dwiky-kasih.pages.dev/image/midlandphysio.png" },
+      { title: "Mount Lawley Physio", platform: "Custom", status: "finished", timeline: "<2 weeks", url: "https://mtlawleyphysio.com.au", image: "https://dwiky-kasih.pages.dev/image/mountlawley.png" },
+      { title: "Mundaring Hills Physio", platform: "WPBakery", status: "finished", timeline: "<2 weeks", url: "https://mundaringhillsphysio.com.au", image: "https://dwiky-kasih.pages.dev/image/mundaringphysio.png" },
+      { title: "Munhing Restaurant", platform: "WPBakery", status: "done", timeline: "~2 weeks", url: "https://munhing.com", image: "https://dwiky-kasih.pages.dev/image/munhing.png" },
+      { title: "Ngazement", platform: "Custom", status: "done", timeline: "<1 month", url: "https://ngazement.com", image: "https://dwiky-kasih.pages.dev/image/ngazement.png" },
+      { title: "Paradises", platform: "Custom", status: "finished", timeline: "<1 month", url: "https://paradises.com", image: "https://dwiky-kasih.pages.dev/image/paradises.png" },
+      { title: "Rise Learning", platform: "WPBakery", status: "finished", timeline: "<3 days", url: "https://riselearning.com.au", image: "https://dwiky-kasih.pages.dev/image/riselearning.png" },
+      { title: "TCWA", platform: "Custom", status: "finished", timeline: "<1 week", url: "https://tcwa.org.au", image: "https://dwiky-kasih.pages.dev/image/tcwa.png" }
+    ];
+
+    // ===== PLATFORM NORMALIZATION =====
+    const platformMap = {
+      "WordPress + Elementor": "wordpress",
+      "Elementor": "wordpress",
+      "WPBakery": "wordpress",
+      "Premium Theme": "wordpress",
+      "Oxygen": "custom",
+      "Custom Design": "custom",
+      "Custom": "custom",
+      "Shopify": "shopify"
+    };
+
+    // ===== PLATFORM DISPLAY & ICONS =====
+    const platformDisplay = {
+      "WordPress + Elementor": "WP + Elementor",
+      "Elementor": "Elementor",
+      "WPBakery": "WPBakery",
+      "Premium Theme": "Premium Theme",
+      "Oxygen": "Oxygen",
+      "Custom Design": "Custom",
+      "Custom": "Custom",
+      "Shopify": "Shopify"
+    };
+
+    const platformColors = {
+      "WordPress + Elementor": "#0073AA",
+      "Elementor": "#9C3CF5",
+      "WPBakery": "#E44D26",
+      "Premium Theme": "#6B7280",
+      "Oxygen": "#F97316",
+      "Custom Design": "#059669",
+      "Custom": "#059669",
+      "Shopify": "#96BF48"
+    };
+
+    // ===== IMAGE PLACEHOLDER GENERATOR =====
+    function generatePlaceholder(platformKey, title) {
+      const color = platformColors[platformKey] || "#6B7280";
+      const displayPlatform = platformDisplay[platformKey] || platformKey;
+      const initials = displayPlatform.split(/[\s+]/).map(w => w[0]).join("").slice(0, 2).toUpperCase();
+      const encodedTitle = encodeURIComponent(title);
+      // Using a lightweight SVG placeholder with platform color
+      return `data:image/svg+xml,${encodeURIComponent(`
+        <svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400">
+          <rect width="640" height="400" fill="${color}"/>
+          <rect x="5%" y="5%" width="90%" height="90%" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2" rx="8"/>
+          <text x="50%" y="45%" dominant-baseline="middle" text-anchor="middle" font-family="system-ui, sans-serif" font-size="28" font-weight="600" fill="rgba(255,255,255,0.9)">${initials}</text>
+          <text x="50%" y="58%" dominant-baseline="middle" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="rgba(255,255,255,0.6)">${encodedTitle}</text>
+        </svg>
+      `)}`;
+    }
+
+    // ===== STATUS MAP =====
+    const statusDisplay = {
+      finished: "Finished",
+      managing: "Still Managing",
+      manager: "Website Manager",
+      done: "Done"
+    };
+
+    // ===== DOM ELEMENTS =====
+    const grid = document.getElementById("grid");
+    const emptyState = document.getElementById("empty-state");
+    const visibleCount = document.getElementById("visible-count");
+    const platformPills = document.querySelectorAll(".filter-pill[data-filter='platform']");
+    const statusSelect = document.querySelector(".filter-select[data-filter='status']");
+    const searchInput = document.querySelector(".filter-search[data-filter='search']");
+
+    // ===== STATE =====
+    let currentPlatform = "all";
+    let currentStatus = "all";
+    let currentSearch = "";
+
+    // ===== RENDER =====
+    function renderProjects() {
+      const filtered = projects.filter(p => {
+        const platformMatch = currentPlatform === "all" || platformMap[p.platform] === currentPlatform;
+        const statusMatch = currentStatus === "all" || p.status === currentStatus;
+        const searchMatch = currentSearch === "" ||
+          p.title.toLowerCase().includes(currentSearch.toLowerCase()) ||
+          p.platform.toLowerCase().includes(currentSearch.toLowerCase());
+        return platformMatch && statusMatch && searchMatch;
+      });
+
+      visibleCount.textContent = filtered.length;
+      emptyState.hidden = filtered.length > 0;
+
+      // Add filtering class for smooth transitions
+      grid.classList.add("filtering");
+      requestAnimationFrame(() => grid.classList.remove("filtering"));
+
+      const cardsHTML = filtered.map((p, index) => {
+        const platformKey = p.platform;
+        const displayPlatform = platformDisplay[platformKey] || platformKey;
+        const platformColor = platformColors[platformKey] || "#6B7280";
+        const statusLabel = statusDisplay[p.status] || p.status;
+        const statusClass = `status-${p.status}`;
+        // Use real image if available, fallback to placeholder
+        const imageSrc = p.image || generatePlaceholder(platformKey, p.title);
+
+        return `
+          <article class="card" role="listitem" style="--platform-color: ${platformColor}; --card-index: ${index};" data-index="${index}">
+            <div class="card-thumb">
+              <img
+                src="${imageSrc}"
+                alt="${p.title} - ${displayPlatform} project screenshot"
+                loading="lazy"
+                decoding="async"
+                class="loading"
+                onload="this.classList.remove('loading'); this.classList.add('loaded');"
+                onerror="this.src='${generatePlaceholder(platformKey, p.title)}'; this.classList.remove('loading'); this.classList.add('loaded');"
+              >
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">${p.title}</h3>
+              <div class="card-meta">
+                <span class="platform-badge" style="background: ${platformColor}1A; color: ${platformColor};">${displayPlatform}</span>
+                <span class="status-badge ${statusClass}">${statusLabel}</span>
+              </div>
+              <span class="card-timeline">${p.timeline}</span>
+            </div>
+            <div class="card-footer">
+              <a href="${p.url}" target="_blank" rel="noopener" class="card-link" aria-label="Visit ${p.title}">
+                Visit site
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      grid.innerHTML = cardsHTML;
+    }
+
+    // ===== FILTER HANDLERS =====
+    function setPlatformFilter(value) {
+      currentPlatform = value;
+      platformPills.forEach(pill => {
+        const active = pill.dataset.value === value;
+        pill.classList.toggle("active", active);
+        pill.setAttribute("aria-selected", active);
+      });
+      animateFilterChange();
+    }
+
+    function setStatusFilter(value) {
+      currentStatus = value;
+      animateFilterChange();
+    }
+
+    function setSearchFilter(value) {
+      currentSearch = value.trim();
+      animateFilterChange();
+    }
+
+    // Animate cards out, then render new set
+    function animateFilterChange() {
+      const cards = grid.querySelectorAll(".card");
+      cards.forEach((card, i) => {
+        card.style.animationDelay = `${i * 15}ms`;
+        card.classList.add("exiting");
+      });
+      // Wait for exit animation, then render
+      setTimeout(() => {
+        renderProjects();
+      }, 200 + cards.length * 15);
+    }
+
+    // ===== EVENT LISTENERS =====
+    platformPills.forEach(pill => {
+      pill.addEventListener("click", () => setPlatformFilter(pill.dataset.value));
+    });
+
+    statusSelect.addEventListener("change", (e) => setStatusFilter(e.target.value));
+
+    searchInput.addEventListener("input", (e) => setSearchFilter(e.target.value));
+
+    // Keyboard support for filter pills
+    platformPills.forEach(pill => {
+      pill.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          setPlatformFilter(pill.dataset.value);
+        }
+      });
+    });
+
+    // Smooth scroll to grid from hero CTA
+    document.querySelector('a[href="#grid"]').addEventListener("click", (e) => {
+      e.preventDefault();
+      document.getElementById("grid").scrollIntoView({ behavior: "smooth" });
+      searchInput.focus();
+    });
+
+    // ===== INIT =====
+    renderProjects();
+  </script>
+</body>
+</html>
