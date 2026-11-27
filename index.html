@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Muhammad Dwiky Fajar Kasih — WordPress & Front-End Developer. 28+ projects across healthcare, e-commerce, non-profits, and government.">
+  <meta name="description" content="Muhammad Dwiky Fajar Kasih — WordPress & Front-End Developer. 35+ projects across healthcare, e-commerce, non-profits, and government.">
   <title>MDFK — WordPress & Front-End Developer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -101,6 +101,18 @@
     @keyframes counter-tick {
       from { transform: translateY(-0.5em); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .card-link.checking {
+      color: var(--muted);
+      cursor: wait;
+    }
+    .card-link.checking .spin {
+      animation: spin 1s linear infinite;
     }
 
     .card {
@@ -557,6 +569,19 @@
     .card-link svg { width: 16px; height: 16px; transition: transform 0.15s; }
     .card-link:hover svg { transform: translateX(3px); }
 
+    .card-link.disabled {
+      color: var(--muted);
+      cursor: not-allowed;
+      opacity: 0.6;
+      border-bottom-color: transparent;
+    }
+    .card-link.disabled:hover {
+      border-color: transparent;
+    }
+    .card-link.disabled svg {
+      transform: none;
+    }
+
     @media (max-width: 480px) {
       .card-body { padding: 12px; gap: 6px; }
       .card-title { font-size: 0.9375rem; }
@@ -718,7 +743,7 @@
     const projects = [
       { title: "Pablo & Truff", platform: "Shopify", status: "finished", timeline: "~1 month", url: "https://pabloandtruff.com", managing: true, image: "https://dwiky-kasih.pages.dev/image/pabloandtruff1.png", description: "Premium pet food e-commerce store built on Shopify with custom theme, subscription management, and wholesale portal." },
       { title: "Grey Street Surgery", platform: "WordPress + Elementor", status: "finished", timeline: "~2 weeks", url: "https://greystreetsurgery.com.au", managing: true, image: "https://dwiky-kasih.pages.dev/image/greystreet.png", description: "Medical practice website with online booking, patient portal integration, and GP team showcase. Ongoing management." },
-      { title: "Hammond Park GP Clinic", platform: "WordPress + Elementor", status: "finished", timeline: "~1 week", url: "https://hammondparkgp.com.au", managing: true, image: "https://dwiky-kasih.pages.dev/image/hammondpark.png", description: "Healthcare clinic site with appointment booking, doctor profiles, and patient resources. Active management." },
+      { title: "Hammond Park GP Clinic", platform: "WordPress + Elementor", status: "finished", timeline: "~1 week", url: "https://hammondparkfamilypractice.com.au", managing: true, image: "https://dwiky-kasih.pages.dev/image/hammondpark.png", description: "Healthcare clinic site with appointment booking, doctor profiles, and patient resources. Active management." },
       { title: "EnviroBren", platform: "Elementor", status: "finished", timeline: "~2 weeks", url: "https://envirobren.com.au", managing: true, image: "https://dwiky-kasih.pages.dev/image/envirobren.png", description: "Environmental consulting firm website with project portfolio, services breakdown, and contact forms." },
       { title: "Jupiter Health Beechboro", platform: "Elementor", status: "finished", timeline: "~1 week", url: "https://jupiterhealth.com.au/beechboro", managing: true, image: "https://dwiky-kasih.pages.dev/image/jupiter-beechboro.jpg", description: "Multi-location healthcare network site with location-specific pages, services, and practitioner directories." },
       { title: "Jupiter Dental Clinic", platform: "Elementor", status: "finished", timeline: "~2 weeks", url: "https://jupiterdental.com.au", managing: true, image: "https://dwiky-kasih.pages.dev/image/jupiter-dental-clinic.jpg", description: "Dental practice website with treatment pages, online booking, and patient education resources." },
@@ -740,7 +765,7 @@
       { title: "Mates That Matter", platform: "Custom", status: "done", timeline: "<2 weeks", url: "https://web.archive.org/web/2023*/matesthatmatter.com", image: "https://dwiky-kasih.pages.dev/image/matesthatmatter.png", description: "Mental health platform for men with peer support, resources, and crisis pathways. Archived." },
       { title: "DotX", platform: "Oxygen", status: "finished", timeline: "<2 hrs/task", url: "https://dotx.com.au", image: "https://dwiky-kasih.pages.dev/image/dotx.png", description: "Digital agency portfolio with case studies, service offerings, and team showcase." },
       { title: "Kate Forsyth", platform: "Oxygen", status: "done", timeline: "<1 week", url: "https://kateforsyth.com.au", image: "https://dwiky-kasih.pages.dev/image/kateforsyth.png", description: "Author website with bibliography, events calendar, newsletter, and media kit." },
-      { title: "KSP IKR", platform: "Oxygen", status: "done", timeline: "<1 hr/task", url: "https://kspikr.com", image: "https://dwiky-kasih.pages.dev/image/kspikr.png", description: "Cooperative savings and loan website with member portal and financial calculators." },
+      { title: "KSP IKR", platform: "Oxygen", status: "done", timeline: "<1 hr/task", url: "https://kspikr.id/", image: "https://dwiky-kasih.pages.dev/image/kspikr.png", description: "Cooperative savings and loan website with member portal and financial calculators." },
       { title: "Speedfest", platform: "Custom", status: "done", timeline: "<1 week", url: "https://speedfest.com.au", image: "https://dwiky-kasih.pages.dev/image/festivaloffest.png", description: "Motorsport event site with schedule, ticketing, live timing, and sponsor showcase." },
       { title: "Martin Box Marine", platform: "Custom", status: "done", timeline: "<1 week", url: "https://martinboxmarine.com.au", image: "https://dwiky-kasih.pages.dev/image/martinboxmarine.png", description: "Marine equipment supplier with product catalog, technical specs, and dealer locator." },
       { title: "Midland Physio", platform: "Custom", status: "finished", timeline: "<1 month", url: "https://midlandphysio.com.au", image: "https://dwiky-kasih.pages.dev/image/midlandphysio.png", description: "Physiotherapy clinic network with online booking, treatment pages, and team bios." },
@@ -787,6 +812,86 @@
       "Custom": "#059669",
       "Shopify": "#96BF48"
     };
+
+    // ===== URL REACHABILITY CACHE =====
+    const urlReachabilityCache = new Map();
+
+    // Check if a URL is reachable using fetch with no-cors
+    async function checkUrlReachable(url) {
+      // Check cache first
+      if (urlReachabilityCache.has(url)) {
+        return urlReachabilityCache.get(url);
+      }
+
+      // Skip check for known offline projects
+      const project = projects.find(p => p.url === url);
+      if (project && project.offline) {
+        urlReachabilityCache.set(url, false);
+        return false;
+      }
+
+      try {
+        // Use a lightweight HEAD request via a CORS proxy or direct fetch
+        // We'll use fetch with mode: 'no-cors' which doesn't read response but will fail on network errors
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000);
+
+        const response = await fetch(url, {
+          method: 'HEAD',
+          mode: 'no-cors',
+          signal: controller.signal,
+          cache: 'no-cache'
+        });
+        clearTimeout(timeoutId);
+
+        // no-cors mode returns opaque response - we can't read status
+        // But if fetch resolves (doesn't throw), the network request succeeded
+        urlReachabilityCache.set(url, true);
+        return true;
+      } catch (error) {
+        // Network error, timeout, or CORS block
+        if (error.name === 'AbortError') {
+          urlReachabilityCache.set(url, false);
+        } else if (error.name === 'TypeError') {
+          // Could be CORS or network error
+          // Try a more lenient check - if it's a known domain, assume reachable
+          try {
+            const controller2 = new AbortController();
+            const timeoutId2 = setTimeout(() => controller2.abort(), 3000);
+            await fetch(url, {
+              method: 'GET',
+              mode: 'no-cors',
+              signal: controller2.signal,
+              cache: 'no-cache'
+            });
+            clearTimeout(timeoutId2);
+            urlReachabilityCache.set(url, true);
+            return true;
+          } catch {
+            urlReachabilityCache.set(url, false);
+            return false;
+          }
+        } else {
+          urlReachabilityCache.set(url, false);
+          return false;
+        }
+        return false;
+      }
+    }
+
+    // Check multiple URLs in parallel
+    async function checkUrlsReachable(urls) {
+      const results = await Promise.allSettled(
+        urls.map(url => checkUrlReachable(url))
+      );
+      const reachable = new Set();
+      results.forEach((result, i) => {
+        if (result.status === 'fulfilled' && result.value) {
+          reachable.add(urls[i]);
+        }
+      });
+      return reachable;
+    }
 
     // ===== IMAGE PLACEHOLDER GENERATOR =====
     function generatePlaceholder(platformKey, title) {
@@ -854,6 +959,17 @@
       grid.classList.add("filtering");
       requestAnimationFrame(() => grid.classList.remove("filtering"));
 
+      // URL validation helper
+      function isValidUrl(url) {
+        try {
+          const u = new URL(url);
+          return u.protocol === 'http:' || u.protocol === 'https:';
+        } catch {
+          return false;
+        }
+      }
+
+      // Initial render with "Checking..." state
       const cardsHTML = filtered.map((p, index) => {
         const platformKey = p.platform;
         const displayPlatform = platformDisplay[platformKey] || platformKey;
@@ -863,9 +979,11 @@
         // Use real image if available, fallback to placeholder
         const imageSrc = p.image || generatePlaceholder(platformKey, p.title);
         const description = p.description ? `<p class="card-description">${p.description}</p>` : '';
+        // Only show visit link if URL is valid and project is not marked offline
+        const showVisitLink = isValidUrl(p.url) && !p.offline;
 
         return `
-          <article class="card reveal-on-scroll" role="listitem" style="--platform-color: ${platformColor}; --card-index: ${index};" data-index="${index}">
+          <article class="card reveal-on-scroll" role="listitem" style="--platform-color: ${platformColor}; --card-index: ${index};" data-index="${index}" data-url="${p.url}">
             <div class="card-thumb">
               <img
                 src="${imageSrc}"
@@ -887,10 +1005,17 @@
               <span class="card-timeline">${p.timeline}</span>
             </div>
             <div class="card-footer">
-              <a href="${p.url}" target="_blank" rel="noopener" class="card-link" aria-label="Visit ${p.title}">
-                Visit site
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              </a>
+              ${showVisitLink ? `
+                <span class="card-link checking" aria-label="Checking site availability..." data-url="${p.url}">
+                  Checking...
+                  <svg class="spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" stroke-dasharray="31.4 31.4" stroke-dashoffset="31.4"/></svg>
+                </span>
+              ` : `
+                <span class="card-link disabled" aria-label="Site not available">
+                  Site offline
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                </span>
+              `}
             </div>
           </article>
         `;
@@ -900,6 +1025,54 @@
 
       // Trigger scroll reveal for new cards
       observeRevealElements();
+
+      // Check reachability for all visible projects with valid URLs
+      checkAndUpdateReachability(filtered);
+    }
+
+    // Check reachability and update cards
+    async function checkAndUpdateReachability(filteredProjects) {
+      const urlsToCheck = filteredProjects
+        .filter(p => isValidUrl(p.url) && !p.offline)
+        .map(p => p.url);
+
+      if (urlsToCheck.length === 0) return;
+
+      // Check all URLs in parallel
+      const reachableUrls = await checkUrlsReachable(urlsToCheck);
+
+      // Update each card
+      document.querySelectorAll('.card[data-url]').forEach(card => {
+        const url = card.dataset.url;
+        const footer = card.querySelector('.card-footer');
+        const isReachable = reachableUrls.has(url);
+
+        if (isReachable) {
+          footer.innerHTML = `
+            <a href="${url}" target="_blank" rel="noopener" class="card-link" aria-label="Visit site">
+              Visit site
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          `;
+        } else {
+          footer.innerHTML = `
+            <span class="card-link disabled" aria-label="Site not available">
+              Site offline
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            </span>
+          `;
+        }
+      });
+    }
+
+    // URL validation helper (moved to module scope for reuse)
+    function isValidUrl(url) {
+      try {
+        const u = new URL(url);
+        return u.protocol === 'http:' || u.protocol === 'https:';
+      } catch {
+        return false;
+      }
     }
 
     // ===== FILTER HANDLERS =====
